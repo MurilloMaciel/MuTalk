@@ -2,13 +2,109 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graphg"
-    app:startDestination="@id/fragMain">
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/fragSplash">
+
+    <fragment
+        android:id="@+id/fragSplash"
+        android:name="com.maciel.murillo.mutalk.presentation.splash.SplashFragment"
+        android:label="FragmentSplash"
+        tools:layout="@layout/fragment_splash">
+
+        <action
+            android:id="@+id/goToMain"
+            app:destination="@id/fragMain"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
+
+        <action
+            android:id="@+id/goToLogin"
+            app:destination="@id/fragLogin"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragSignup"
+        android:name="com.maciel.murillo.mutalk.presentation.signup.SignupFragment"
+        android:label="FragmentSignup"
+        tools:layout="@layout/fragment_signup">
+
+        <action
+            android:id="@+id/goToMain"
+            app:destination="@id/fragMain"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragLogin"
+        android:name="com.maciel.murillo.mutalk.presentation.login.LoginFragment"
+        android:label="FragmentLogin"
+        tools:layout="@layout/fragment_login">
+
+        <action
+            android:id="@+id/goToSignup"
+            app:destination="@id/fragSignup" />
+
+        <action
+            android:id="@+id/goToMain"
+            app:destination="@id/fragMain"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
+
+    </fragment>
 
     <fragment
         android:id="@+id/fragMain"
         android:name="com.maciel.murillo.mutalk.presentation.main.FragmentMain"
         android:label="FragmentMain"
-        tools:layout="@layout/fragment_main" />
+        tools:layout="@layout/fragment_main">
+
+        <action
+            android:id="@+id/goToSettings"
+            app:destination="@id/fragSettings" />
+
+        <action
+            android:id="@+id/goToAddGroup"
+            app:destination="@id/fragAddGroup" />
+
+        <action
+            android:id="@+id/goToChat"
+            app:destination="@id/fragChat" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragAddGroup"
+        android:name="com.maciel.murillo.mutalk.presentation.addgroup.AddGroupFragment"
+        android:label="FragmentAddGroup"
+        tools:layout="@layout/fragment_add_group">
+
+        <action
+            android:id="@+id/goToGroupRegister"
+            app:destination="@id/fragGroupRegister" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragChat"
+        android:name="com.maciel.murillo.mutalk.presentation.chat.ChatFragment"
+        android:label="FragmentChat"
+        tools:layout="@layout/fragment_chat" />
+
+    <fragment
+        android:id="@+id/fragGroupRegister"
+        android:name="com.maciel.murillo.mutalk.presentation.groupregister.GroupRegisterFragment"
+        android:label="FragmentGroupRegister"
+        tools:layout="@layout/fragment_group_register" />
+
+    <fragment
+        android:id="@+id/fragSettings"
+        android:name="com.maciel.murillo.mutalk.presentation.settings.SettingsFragment"
+        android:label="FragmentSettings"
+        tools:layout="@layout/fragment_settings" />
 
 </navigation>

@@ -22,9 +22,7 @@ class TabsAdapter(
         else -> throw Exception("Error finding tab fragment")
     }
 
-    override fun getPageTitle(position: Int): CharSequence? {
-        return context.resources.getString(TAB_TITLES[position])
-    }
+    override fun getPageTitle(position: Int) = context.resources.getString(TAB_TITLES[position])
 
     override fun getCount() = TAB_TITLES.size
 }

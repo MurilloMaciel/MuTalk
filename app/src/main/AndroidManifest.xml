@@ -15,7 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MuTalk">
 
-        <activity android:name=".presentation.MainActivity">
+        <activity
+            android:name=".presentation.MainActivity"
+            android:theme="@style/Theme.MuTalk.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
