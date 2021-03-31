@@ -35,7 +35,6 @@
     <string name="deniedPermissions_dialog_title">Permissões Negadas</string>
     <string name="deniedPermissions_dialog_message">Para utilizar o app é necessário aceitar as permissões</string>
 
-
     <!--    toast-->
     <string name="toast_missName">Preencha um nome</string>
     <string name="toast_missEmail">Preencha um e-mail</string>
@@ -64,5 +63,8 @@
     <string name="message">Mensagem</string>
     <string name="register_group_hint">Defina um nome e uma imagem opcional</string>
     <string name="group_name_hint">Nome do grupo</string>
+
+    <string name="tab_name_chats">Conversas</string>
+    <string name="tab_name_contacts">Contatos</string>
 
 </resources>
