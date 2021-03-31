@@ -1,7 +1,8 @@
-package com.maciel.murillo.mutalk
+package com.maciel.murillo.mutalk.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.maciel.murillo.mutalk.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

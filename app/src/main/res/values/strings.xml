@@ -1,3 +1,68 @@
 <resources>
+    <!--    app name-->
     <string name="app_name">MuTalk</string>
+
+    <!--    text views-->
+    <string name="textDontHaveAccount">Não tem conta? Cadastre-se</string>
+    <string name="textJustSettingsToProfile">Esse não é o seu nome de usuário. Esse nome apenas ficará visível para seus contatos do MuTalk.</string>
+
+    <!--    Toolbar-->
+    <string name="mainToolbarTitle">MuTalk</string>
+    <string name="SettingsToolbarTitle">Configurações</string>
+
+    <!--    menu-->
+    <string name="mainMenuSearch">Pesquisar</string>
+    <string name="mainMenuSettings">Configurações</string>
+    <string name="mainMenuLogout">Sair</string>
+
+    <!--    botoes-->
+    <string name="textLoginButton">LOGAR</string>
+    <string name="textSignInButton">CADASTRAR</string>
+
+    <!--    hints-->
+    <string name="hint_email">Digite seu e-mail</string>
+    <string name="hint_password">Digite sua senha</string>
+    <string name="hint_confirm_password">Confirme sua senha</string>
+    <string name="hint_name">Digite seu nome</string>
+
+    <!--    Dialogs-->
+    <string name="dialog_confirm_button">CONFIRMAR</string>
+    <string name="dialog_cancel_button">CANCELAR</string>
+    <string name="dialog_yes_button">SIM</string>
+    <string name="dialog_no_button">NÃO</string>
+    <string name="dialog_accept_button">ACEITAR</string>
+    <string name="dialog_deny_button">NEGAR</string>
+    <string name="deniedPermissions_dialog_title">Permissões Negadas</string>
+    <string name="deniedPermissions_dialog_message">Para utilizar o app é necessário aceitar as permissões</string>
+
+
+    <!--    toast-->
+    <string name="toast_missName">Preencha um nome</string>
+    <string name="toast_missEmail">Preencha um e-mail</string>
+    <string name="toast_missPassword">Preencha uma senha</string>
+    <string name="toast_passwordMustBeConfirmed">Você preencheu senhas diferentes</string>
+    <string name="toast_weakPassword">Digite uma senha mais forte!</string>
+    <string name="toast_invalidEmail">Digite um email válido!</string>
+    <string name="toast_accountAlreadyExists">Essa conta já foi cadastrada!</string>
+    <string name="toast_errorOnSignInUser">Erro ao cadastrar usuário: </string>
+    <string name="toast_errorOnAuthUser">Erro ao logar usuário: </string>
+    <string name="toast_userDontExist">Usuário não cadastrado</string>
+    <string name="toast_emailAndPasswordDontMatch">Email e senha não correspondem a um usuário</string>
+
+    <!--    snackbar-->
+    <string name="close_custom_snackbar">FECHAR</string>
+
+    <!-- fragment -->
+    <string name="chats_fragment">Conversas</string>
+    <string name="contacts_fragment">Contatos</string>
+
+    <!--    Firebase-->
+    <string name="firebase_child_users">usuarios</string>
+    <string name="title_activity_chat">ChatActivity</string>
+    <string name="title_activity_new_group">NewGroupActivity</string>
+    <string name="title_activity_group_register">GroupRegisterActivity</string>
+    <string name="message">Mensagem</string>
+    <string name="register_group_hint">Defina um nome e uma imagem opcional</string>
+    <string name="group_name_hint">Nome do grupo</string>
+
 </resources>

@@ -1,0 +1,77 @@
+{
+  "project_info": {
+    "project_number": "831632258220",
+    "firebase_url": "https://whatsappclone-d044c.firebaseio.com",
+    "project_id": "whatsappclone-d044c",
+    "storage_bucket": "whatsappclone-d044c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:831632258220:android:32abf68c4487bc27bc1b09",
+        "android_client_info": {
+          "package_name": "com.maciel.murillo.mutalk"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "831632258220-j9558rsi8jnvrd6e7mgu59m2u3u7m0st.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyADkV74BXvfurZFl8QLlVwK86KU8-bf-f8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "831632258220-j9558rsi8jnvrd6e7mgu59m2u3u7m0st.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:831632258220:android:81c7c19a3e7aa95cbc1b09",
+        "android_client_info": {
+          "package_name": "murillomaciel.example.whatsappclone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "831632258220-v8jq69tre5600t1dfaus2j3rfdrhkpv5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "murillomaciel.example.whatsappclone",
+            "certificate_hash": "ba9eb103d5275f260b4b08efeade5b4b3166177d"
+          }
+        },
+        {
+          "client_id": "831632258220-j9558rsi8jnvrd6e7mgu59m2u3u7m0st.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyADkV74BXvfurZFl8QLlVwK86KU8-bf-f8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "831632258220-j9558rsi8jnvrd6e7mgu59m2u3u7m0st.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
