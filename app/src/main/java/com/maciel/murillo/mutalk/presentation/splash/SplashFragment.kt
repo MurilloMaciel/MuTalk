@@ -2,6 +2,7 @@ package com.maciel.murillo.mutalk.presentation.splash
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.maciel.murillo.mutalk.core.base.BaseFragment
 import com.maciel.murillo.mutalk.core.helper.EventObserver
 import com.maciel.murillo.mutalk.databinding.FragmentSplashBinding
@@ -14,13 +15,17 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>() {
 
     private val splashViewModel: SplashViewModel by viewModel()
 
+    override fun setUpViews() {
+        splashViewModel.onInit()
+    }
+
     override fun setUpObservers() = with(splashViewModel) {
         navigateToLogin.observe(viewLifecycleOwner, EventObserver {
-
+            findNavController().navigate(SplashFragmentDirections.goToLogin())
         })
 
         navigateToMain.observe(viewLifecycleOwner, EventObserver {
-
+            findNavController().navigate(SplashFragmentDirections.goToMain())
         })
     }
 }
