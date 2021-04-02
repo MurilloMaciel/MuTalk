@@ -2,7 +2,7 @@ package com.maciel.murillo.mutalk.data.datasource
 
 import com.google.firebase.auth.FirebaseUser
 
-interface AuthDataSource {
+interface AuthRemoteDataSource {
 
     fun isUserLogged(): Boolean
 
