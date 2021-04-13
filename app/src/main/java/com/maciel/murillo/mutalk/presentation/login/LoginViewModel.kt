@@ -4,10 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.core.extensions.isEmailValid
+import com.example.core.helper.Event
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthInvalidUserException
-import com.maciel.murillo.mutalk.core.extensions.isEmailValid
-import com.maciel.murillo.mutalk.core.helper.Event
 import com.maciel.murillo.mutalk.domain.usecase.auth.LoginUseCase
 import com.maciel.murillo.mutalk.presentation.model.AuthError
 import kotlinx.coroutines.CoroutineExceptionHandler

@@ -1,24 +1,15 @@
 package com.maciel.murillo.mutalk.data.model
 
-import com.maciel.murillo.mutalk.domain.model.Group
+import com.google.firebase.firestore.PropertyName
+import com.maciel.murillo.mutalk.data.remote.PROPERTY_MEMBERS
 
 data class GroupData(
-    val id: String = "",
-    val name: String = "",
-    val image: String = "",
-    val members: List<UserData> = emptyList(),
-)
+    override var id: String = "",
+    override var messages: List<MessageData> = emptyList(),
+    var name: String = "",
+    var imageUrl: String = "",
 
-fun GroupData.mapToGroup() = Group(
-    id = this.id,
-    name = this.name,
-    image = this.image,
-    members = this.members.map { it.mapToUser() },
-)
-
-fun Group.mapToGroupData() = GroupData(
-    id = this.id,
-    name = this.name,
-    image = this.image,
-    members = this.members.map { it.mapToUserData() },
-)
+    @get:PropertyName(PROPERTY_MEMBERS)
+    @set:PropertyName(PROPERTY_MEMBERS)
+    override var members: List<UserData> = emptyList(),
+) : ChatData()

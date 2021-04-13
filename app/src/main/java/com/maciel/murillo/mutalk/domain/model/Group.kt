@@ -1,8 +1,9 @@
 package com.maciel.murillo.mutalk.domain.model
 
 data class Group(
-    val id: String,
+    override var id: String,
+    override var members: List<User>,
+    override var messages: List<Message>,
     val name: String,
-    val image: String,
-    val members: List<User>,
-)
+    val imageUrl: String,
+) : Chat()

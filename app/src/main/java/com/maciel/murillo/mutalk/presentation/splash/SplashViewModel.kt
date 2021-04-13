@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.maciel.murillo.mutalk.core.helper.Event
+import com.example.core.helper.Event
 import com.maciel.murillo.mutalk.domain.usecase.auth.IsUserLoggedUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay

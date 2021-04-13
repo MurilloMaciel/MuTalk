@@ -1,8 +1,8 @@
 package com.maciel.murillo.mutalk.domain.model
 
 data class Message(
-    val userId: String,
+    val id: String,
+    val senderId: String,
     val message: String,
-    val image: String,
-    val senderName: String,
+    val imageUrl: String,
 )

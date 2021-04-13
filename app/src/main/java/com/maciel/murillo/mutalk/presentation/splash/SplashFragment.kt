@@ -3,8 +3,8 @@ package com.maciel.murillo.mutalk.presentation.splash
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.maciel.murillo.mutalk.core.base.BaseFragment
-import com.maciel.murillo.mutalk.core.helper.EventObserver
+import com.example.core.base.BaseFragment
+import com.example.core.helper.EventObserver
 import com.maciel.murillo.mutalk.databinding.FragmentSplashBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 

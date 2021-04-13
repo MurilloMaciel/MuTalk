@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="how_to_select_image">Como deseja selecionar a foto</string>
+    <string name="take_a_picture">Tirar uma foto</string>
+    <string name="select_from_gallery">Selecionar da galeria</string>
+    <string name="save_error">Ocorreu um erro ao salvar sua imagem</string>
+
+</resources>

@@ -1,10 +1,7 @@
 package com.maciel.murillo.mutalk.domain.model
 
-data class Chat(
-    val idSender: String,
-    val idReceiver: String,
-    val lastMessage: String,
-    val isGroup: String,
-    val displayedUser: User,
-    val group: Group,
-)
+abstract class Chat {
+    abstract var id: String
+    abstract var members: List<User>
+    abstract var messages: List<Message>
+}

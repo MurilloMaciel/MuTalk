@@ -3,10 +3,10 @@ package com.maciel.murillo.mutalk.presentation.settings
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.maciel.murillo.mutalk.core.base.BaseFragment
-import com.maciel.murillo.mutalk.core.extensions.newTextWatcher
-import com.maciel.murillo.mutalk.core.extensions.showToast
-import com.maciel.murillo.mutalk.core.helper.EventObserver
+import com.example.core.base.BaseFragment
+import com.example.core.extensions.newTextWatcher
+import com.example.core.extensions.showToast
+import com.example.core.helper.EventObserver
 import com.maciel.murillo.mutalk.databinding.FragmentSettingsBinding
 import com.maciel.murillo.mutalk.presentation.signup.SignupFragmentDirections
 import com.maciel.murillo.mutalk.presentation.signup.SignupViewModel

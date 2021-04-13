@@ -8,8 +8,10 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.maciel.murillo.mutalk.data.datasource.AuthRemoteDataSource
+import com.maciel.murillo.mutalk.data.datasource.ChatRemoteDataSource
 import com.maciel.murillo.mutalk.data.datasource.UserRemoteDataSource
 import com.maciel.murillo.mutalk.data.remote.AuthRemoteDataSourceImpl
+import com.maciel.murillo.mutalk.data.remote.ChatRemoteDataSourceImpl
 import com.maciel.murillo.mutalk.data.remote.UserRemoteDataSourceImpl
 import com.maciel.murillo.mutalk.data.repository.AuthRepositoryImpl
 import com.maciel.murillo.mutalk.data.repository.UserRepositoryImpl
@@ -28,4 +30,7 @@ val dataModule = module {
 
     single<UserRemoteDataSource> { UserRemoteDataSourceImpl(db = get()) }
     single<UserRepository> { UserRepositoryImpl(userRemoteDataSource = get()) }
+
+    single<ChatRemoteDataSource> { ChatRemoteDataSourceImpl(db = get()) }
+//    single<UserRepository> { UserRepositoryImpl(userRemoteDataSource = get()) }
 }

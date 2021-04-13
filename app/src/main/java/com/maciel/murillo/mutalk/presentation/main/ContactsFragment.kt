@@ -2,7 +2,7 @@ package com.maciel.murillo.mutalk.presentation.main
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.maciel.murillo.mutalk.core.base.BaseFragment
+import com.example.core.base.BaseFragment
 import com.maciel.murillo.mutalk.databinding.FragmentContactsBinding
 
 class ContactsFragment : BaseFragment<FragmentContactsBinding>() {
