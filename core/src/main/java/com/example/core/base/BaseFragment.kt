@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.annotation.CallSuper
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
+import com.example.core.helper.EventObserver
 
 abstract class BaseFragment<B : ViewBinding> : Fragment() {
 
@@ -14,6 +15,8 @@ abstract class BaseFragment<B : ViewBinding> : Fragment() {
 
     protected val binding
         get() = requireNotNull(_binding)
+
+    abstract val viewModel: BaseViewModel
 
     abstract val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> B
 
@@ -40,9 +43,15 @@ abstract class BaseFragment<B : ViewBinding> : Fragment() {
 
     protected open fun setUpViews() {}
 
-    protected open fun setUpObservers() {}
+    protected open fun setUpObservers() {
+        viewModel.connectivityError.observe(viewLifecycleOwner, EventObserver {
+            onConnectivityError()
+        })
+    }
 
     protected open fun setUpListeners() {}
 
     protected open fun postSetUp() {}
+
+    protected open fun onConnectivityError() {}
 }
