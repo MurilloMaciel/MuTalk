@@ -1,5 +1,6 @@
 include ':network'
-include ':core'
 include ':image_picker'
 include ':app'
 rootProject.name = "MuTalk"
+include ':util'
+include ':gif_finder'

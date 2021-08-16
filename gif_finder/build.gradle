@@ -1,0 +1,37 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+    id 'com.squareup.wire'
+}
+
+apply from: "$rootDir/config-android-module.gradle"
+
+wire {
+    kotlin {}
+}
+
+dependencies {
+    implementation project(Modules.util)
+    implementation project(Modules.network)
+
+    implementation(AndroidX.ktx)
+    testImplementation(JUnit.core)
+
+    implementation(Hilt.core)
+    kapt(Hilt.compiler)
+
+    implementation(Retrofit.core)
+
+    implementation(OkHttp.core)
+    implementation(Moshi.core)
+    implementation(Moshi.codeGen)
+
+    implementation(Coroutines.core)
+    implementation(Lifecycle.viewModel)
+
+    implementation(Datastore.datastore)
+    implementation(Datastore.core)
+    implementation(Wire.runtime)
+}

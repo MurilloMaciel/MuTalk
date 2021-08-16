@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+option java_package = "com.maciel.murillo.gif_finder";
+option java_multiple_files = true;
+
+message GifListProto {
+  repeated GifProto gifs = 1;
+  int64 timestamp = 2;
+}
+
+message GifProto {
+  string type = 1;
+  string id = 2;
+  string url = 3;
+  string rating = 4;
+  string title = 5;
+  ImagesProto images = 6;
+}
+
+message ImagesProto {
+  ImageContentProto fixedHeight = 1;
+  ImageContentProto fixedWidth = 2;
+  ImageContentProto fixedHeightSmall = 3;
+  ImageContentProto fixedWidthSmall = 4;
+}
+
+message ImageContentProto {
+  string url = 1;
+  string width = 2;
+  string height = 3;
+  string mp4 = 4;
+  string webp = 5;
+}

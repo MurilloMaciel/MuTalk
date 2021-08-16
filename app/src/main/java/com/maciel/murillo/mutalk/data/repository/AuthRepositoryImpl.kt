@@ -1,6 +1,6 @@
 package com.maciel.murillo.mutalk.data.repository
 
-import com.example.core.extensions.safe
+import com.maciel.murillo.util.extensions.safe
 import com.maciel.murillo.mutalk.data.datasource.AuthRemoteDataSource
 import com.maciel.murillo.mutalk.domain.repository.AuthRepository
 

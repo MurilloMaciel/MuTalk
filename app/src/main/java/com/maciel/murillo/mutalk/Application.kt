@@ -1,20 +1,14 @@
 package com.maciel.murillo.mutalk
 
 import android.app.Application
-import com.maciel.murillo.mutalk.di.appComponent
-import org.koin.android.ext.koin.androidContext
-import org.koin.android.ext.koin.androidLogger
-import org.koin.core.context.startKoin
-import org.koin.core.logger.Level
+import com.google.firebase.FirebaseApp
+import dagger.hilt.android.HiltAndroidApp
 
+@HiltAndroidApp
 class Application : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        startKoin {
-            androidLogger(Level.ERROR)
-            androidContext(this@Application)
-            modules(appComponent)
-        }
+        FirebaseApp.initializeApp(this)
     }
 }

@@ -1,49 +1,72 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
-//    id 'kotlin-kapt'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
     id 'com.google.gms.google-services'
     id 'androidx.navigation.safeargs'
 }
 
+apply from: "$rootDir/config-android-module.gradle"
+
 android {
-    compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
-
-    defaultConfig {
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode rootProject.ext.versionCode
-        versionName rootProject.ext.versionName
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-    }
-
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-    }
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-
-    kotlinOptions {
-        jvmTarget = '1.8'
-    }
-
     buildFeatures {
         viewBinding true
     }
 }
 
-dependencies {
-    implementation project(path: ':core')
+kapt {
+    correctErrorTypes true
+}
 
-    // tabs
-    implementation 'com.ogaclejapan.smarttablayout:library:2.0.0@aar'
-    implementation 'com.ogaclejapan.smarttablayout:utils-v4:2.0.0@aar'
+dependencies {
+    implementation "de.hdodenhof:circleimageview:3.0.1"
+    implementation project(Modules.util)
+    implementation project(Modules.gifFinder)
+
+    implementation(Hilt.core)
+    kapt(Hilt.compiler)
+
+    implementation(Kotlin.stdlib)
+    implementation(Kotlin.junit)
+    implementation(AndroidX.ktx)
+    implementation(AndroidX.appcompat)
+    implementation(AndroidX.design)
+    implementation(AndroidX.activity)
+    implementation(Layout.constraint)
+    testImplementation (JUnit.core)
+    testImplementation (MockK.core)
+    androidTestImplementation (MockK.android)
+    androidTestImplementation (AndroidXTest.ext)
+    androidTestImplementation (AndroidXTest.espresso)
+
+    implementation(Coroutines.core)
+    implementation(Coroutines.android)
+    implementation(Coroutines.playServices)
+    testImplementation Coroutines.test
+
+    implementation(Lifecycle.runtime)
+    implementation(Lifecycle.viewModel)
+    implementation(Lifecycle.liveData)
+    implementation(Lifecycle.commonJava8)
+
+    implementation(Retrofit.core)
+    implementation(Retrofit.moshiConverter)
+    implementation(Retrofit.gsonConverter)
+
+    implementation(OkHttp.core)
+    implementation(Moshi.core)
+    implementation(Moshi.codeGen)
+
+    implementation(Datastore.datastore)
+    implementation(Datastore.core)
+
+    implementation(Glide.core)
+    annotationProcessor(Glide.compiler)
+
+    implementation platform(Firebase.platform)
+    implementation(Firebase.auth)
+    implementation(Firebase.storage)
+    implementation(Firebase.firestore)
+    implementation(Firebase.analytics)
 }
