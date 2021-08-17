@@ -1,0 +1,14 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+}
+
+apply from: "$rootDir/config-android-module.gradle"
+
+dependencies {
+    implementation project(Modules.util)
+
+    implementation(Coroutines.core)
+    implementation(Coroutines.test)
+    implementation(JUnit.core)
+}

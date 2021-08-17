@@ -5,8 +5,8 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build.VERSION.SDK_INT
 import android.os.Build.VERSION_CODES.M
-import com.maciel.murillo.util.extensions.isNotNull
-import com.maciel.murillo.util.extensions.safe
+import com.maciel.murillo.extensions.isNotNull
+import com.maciel.murillo.extensions.safe
 import okhttp3.Interceptor
 import okhttp3.Response
 

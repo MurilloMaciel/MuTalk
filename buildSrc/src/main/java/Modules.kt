@@ -3,4 +3,6 @@ object Modules {
     const val imagePicker = ":image_picker"
     const val network = ":network"
     const val util = ":util"
+    const val extensions = ":extensions"
+    const val test_util = ":test_util"
 }

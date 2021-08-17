@@ -21,6 +21,7 @@ kapt {
 
 dependencies {
     implementation "de.hdodenhof:circleimageview:3.0.1"
+    implementation project(Modules.extensions)
     implementation project(Modules.util)
     implementation project(Modules.gifFinder)
 

@@ -6,6 +6,7 @@ plugins {
 apply from: "$rootDir/config-android-module.gradle"
 
 dependencies {
+    implementation project(Modules.extensions)
     implementation project(Modules.util)
 
     implementation(Retrofit.core)

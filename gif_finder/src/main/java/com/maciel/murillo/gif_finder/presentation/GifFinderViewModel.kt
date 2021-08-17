@@ -8,7 +8,9 @@ import com.maciel.murillo.gif_finder.domain.model.GetGifsError
 import com.maciel.murillo.gif_finder.domain.model.Gif
 import com.maciel.murillo.gif_finder.domain.usecase.GetTrendingGifsUseCase
 import com.maciel.murillo.gif_finder.domain.usecase.SearchGifsUseCase
+import com.maciel.murillo.util.provider.DispatcherProvider
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -17,6 +19,7 @@ private const val QUERY_MIN_LENGTH = 3
 
 @HiltViewModel
 class GifFinderViewModel @Inject constructor(
+    private val dispatcherProvider: DispatcherProvider,
     private val getTrendingGifsUseCase: GetTrendingGifsUseCase,
     private val searchGifsUseCase: SearchGifsUseCase
 ) : ViewModel() {
@@ -33,7 +36,7 @@ class GifFinderViewModel @Inject constructor(
     private fun canSearchGifs(query: String) = query.length >= QUERY_MIN_LENGTH
 
     fun getTrendingGifs() {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(dispatcherProvider.io()) {
             getTrendingGifsUseCase().onError { error ->
                 _error.postValue(error)
             }.onSuccess { trendingGifs ->
@@ -45,7 +48,7 @@ class GifFinderViewModel @Inject constructor(
 
     fun searchGifs(query: String) {
         if (canSearchGifs(query)) {
-            viewModelScope.launch(Dispatchers.IO) {
+            viewModelScope.launch(dispatcherProvider.io()) {
                 searchGifsUseCase(query).onError { error ->
                     _error.postValue(error)
                 }.onSuccess { trendingGifs ->

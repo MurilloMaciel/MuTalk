@@ -22,6 +22,7 @@ buildscript {
 
         // todo: tirar junto com a migração compose
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version"
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.21'
     }
 }
 

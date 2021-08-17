@@ -29,7 +29,7 @@ class GifFinderRemoteDataSourceImpl @Inject constructor(
             rating = MOST_ACCEPTED_RATING,
             offset = OFFSET,
         ).safeCall().mapSuccess {
-            Log.d("Murillo", "trendingGifs -> $it")
+//            Log.d("Murillo", "trendingGifs -> $it")
             gifResponseToModelMapper.mapFrom(it)
         }.mapError {
             GetGifsError.Generic

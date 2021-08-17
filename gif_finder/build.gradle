@@ -13,11 +13,17 @@ wire {
 }
 
 dependencies {
+    implementation project(Modules.extensions)
     implementation project(Modules.util)
     implementation project(Modules.network)
+    testImplementation project(Modules.test_util)
 
     implementation(AndroidX.ktx)
+    testImplementation(Kotlin.junit)
     testImplementation(JUnit.core)
+    testImplementation(MockK.core)
+    testImplementation(Coroutines.test)
+    testImplementation(AndroidXTest.archCore)
 
     implementation(Hilt.core)
     kapt(Hilt.compiler)

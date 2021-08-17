@@ -4,7 +4,7 @@ import com.maciel.murillo.network.model.HttpStatus
 import retrofit2.Response
 import com.maciel.murillo.util.result.Result
 
-suspend fun <T> Response<T>.safeCall(): Result<T, HttpStatus> {
+fun <T> Response<T>.safeCall(): Result<T, HttpStatus> {
     return if (isSuccessful && body() != null) {
         Result.Success(body()!!)
     } else {

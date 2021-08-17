@@ -19,7 +19,9 @@ kapt {
 }
 
 dependencies {
+    implementation project(Modules.extensions)
     implementation project(Modules.util)
+    testImplementation project(Modules.test_util)
 
     implementation(AndroidX.ktx)
     implementation(AndroidX.appcompat)

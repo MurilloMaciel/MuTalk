@@ -67,10 +67,12 @@ object AndroidXTest {
     object Versions {
         const val junit = "1.1.1"
         const val espresso = "3.2.0"
+        const val archCore = "2.1.0"
     }
 
     const val ext = "androidx.test.ext:junit:${Versions.junit}"
     const val espresso = "androidx.test.espresso:espresso-core:${Versions.espresso}"
+    const val archCore = "androidx.arch.core:core-testing:${Versions.archCore}"
 }
 
 object MockK {

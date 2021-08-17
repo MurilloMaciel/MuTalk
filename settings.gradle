@@ -4,3 +4,5 @@ include ':app'
 rootProject.name = "MuTalk"
 include ':util'
 include ':gif_finder'
+include ':extensions'
+include ':test_util'

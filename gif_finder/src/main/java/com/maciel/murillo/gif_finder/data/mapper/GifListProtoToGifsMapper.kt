@@ -5,7 +5,7 @@ import com.maciel.murillo.gif_finder.ImageContentProto
 import com.maciel.murillo.gif_finder.domain.model.Gif
 import com.maciel.murillo.gif_finder.domain.model.ImageContent
 import com.maciel.murillo.gif_finder.domain.model.Images
-import com.maciel.murillo.util.extensions.safe
+import com.maciel.murillo.extensions.safe
 import com.maciel.murillo.util.mapper.Mapper
 import javax.inject.Inject
 

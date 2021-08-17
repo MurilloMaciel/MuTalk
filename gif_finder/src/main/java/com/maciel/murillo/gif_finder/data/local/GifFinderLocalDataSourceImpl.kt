@@ -7,9 +7,11 @@ import com.maciel.murillo.gif_finder.data.mapper.GifListProtoToGifsMapper
 import com.maciel.murillo.gif_finder.data.mapper.GifsToGifListProtoMapper
 import com.maciel.murillo.gif_finder.domain.model.Gif
 import kotlinx.coroutines.flow.first
+import java.io.IOException
+import java.util.*
 import javax.inject.Inject
 
-private const val CACHE_TTL = 3600000 // 1 HOUR OF TIME TO LIVE
+const val CACHE_TTL = 3600000L // 1 HOUR OF TIME TO LIVE
 
 class GifFinderLocalDataSourceImpl @Inject constructor(
     private val dataStore: DataStore<GifListProto>,
@@ -19,14 +21,14 @@ class GifFinderLocalDataSourceImpl @Inject constructor(
 
     override suspend fun readTrendingGifsFromCache(): List<Gif>? {
         return try {
-            dataStore.data.first().let {
-                if (isCacheValid(it)) {
-                    gifListProtoToGifsMapper.mapFrom(dataStore.data.first())
+            dataStore.data.first().let { gifsProto ->
+                if (isCacheValid(gifsProto)) {
+                    gifListProtoToGifsMapper.mapFrom(gifsProto)
                 } else {
                     null
                 }
             }
-        } catch (e: Exception) {
+        } catch (e: IOException) {
             null
         }
     }
@@ -35,17 +37,18 @@ class GifFinderLocalDataSourceImpl @Inject constructor(
         try {
             dataStore.updateData {
                 gifsToGifListProtoMapper.mapFrom(gifs).copy(
-                    timestamp = System.currentTimeMillis()
+                    timestamp = Date().time
                 )
             }
-        } catch (e: Exception) {
+        } catch (e: IOException) {
             // do nothing
         }
     }
 
     private fun isCacheValid(gifsList: GifListProto): Boolean {
-        return gifsList.gifs.isEmpty().not().and(
-            System.currentTimeMillis() - gifsList.timestamp <= CACHE_TTL
-        )
+        return gifsList.gifs
+            .isEmpty()
+            .not()
+            .and(Date().time - gifsList.timestamp <= CACHE_TTL)
     }
 }
