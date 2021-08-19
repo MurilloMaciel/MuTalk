@@ -7,20 +7,16 @@ import androidx.lifecycle.viewModelScope
 import com.maciel.murillo.util.event.Event
 import com.maciel.murillo.image_picker.domain.model.ImagePath
 import com.maciel.murillo.image_picker.domain.usecase.SaveImageUseCaseImpl
+import com.maciel.murillo.util.provider.DispatcherProvider
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.CoroutineExceptionHandler
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class ImagePickerViewModel @Inject constructor(
+    private val dispatcherProvider: DispatcherProvider,
     private val saveImageUseCase: SaveImageUseCaseImpl
 ) : ViewModel() {
-
-    private val exceptionHandler = CoroutineExceptionHandler { _, _ ->
-        _saveError.postValue(Event(Unit))
-    }
 
     private var imagePath: ImagePath? = null
     var pickType: PickType? = null
@@ -36,12 +32,19 @@ class ImagePickerViewModel @Inject constructor(
         this.imagePath = imagePath
     }
 
-    fun onImagePrepared(imageBytes: ByteArray) {
-        viewModelScope.launch(Dispatchers.IO + exceptionHandler) {
-            imagePath?.run {
-                saveImageUseCase(imageBytes, this)
-                _saveFinish.postValue(Event(""))
+    private fun saveImage(imageBytes: ByteArray, imagePath: ImagePath) {
+        viewModelScope.launch(dispatcherProvider.io()) {
+            saveImageUseCase(imageBytes, imagePath).onError {
+                _saveError.postValue(Event(Unit))
+            }.onSuccess { imagePathOnDb ->
+                _saveFinish.postValue(Event(imagePathOnDb))
             }
+        }
+    }
+
+    fun onImagePrepared(imageBytes: ByteArray) {
+        imagePath?.let { imagePath ->
+            saveImage(imageBytes, imagePath)
         }
     }
 }

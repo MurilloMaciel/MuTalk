@@ -1,0 +1,3 @@
+package com.maciel.murillo.image_picker.data.repository
+
+class ImagePickerRepositoryImplTest

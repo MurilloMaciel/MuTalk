@@ -27,6 +27,7 @@ dependencies {
     implementation(AndroidX.appcompat)
     implementation(AndroidX.design)
     testImplementation (JUnit.core)
+    testImplementation (MockK.core)
     androidTestImplementation (AndroidXTest.ext)
     androidTestImplementation (AndroidXTest.espresso)
 
