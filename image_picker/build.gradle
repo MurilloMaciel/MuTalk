@@ -26,8 +26,11 @@ dependencies {
     implementation(AndroidX.ktx)
     implementation(AndroidX.appcompat)
     implementation(AndroidX.design)
-    testImplementation (JUnit.core)
-    testImplementation (MockK.core)
+    testImplementation(Kotlin.junit)
+    testImplementation(JUnit.core)
+    testImplementation(MockK.core)
+    testImplementation(Coroutines.test)
+    testImplementation(AndroidXTest.archCore)
     androidTestImplementation (AndroidXTest.ext)
     androidTestImplementation (AndroidXTest.espresso)
 

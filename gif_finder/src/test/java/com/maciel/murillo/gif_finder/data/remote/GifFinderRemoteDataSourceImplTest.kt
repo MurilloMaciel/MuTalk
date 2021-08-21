@@ -66,7 +66,7 @@ class GifFinderRemoteDataSourceImplTest {
     fun getTrendingGifs_success_returnGifs() = coroutineTestRule.runBlockingTest {
         prepareScenario()
 
-        val result = dataSource.getTrendingGifs().handleResult()
+        val result = dataSource.getTrendingGifs().get()
 
         val gifs = listOf(GifFactory.makeGif())
         assertEquals(gifs, result)
@@ -106,7 +106,7 @@ class GifFinderRemoteDataSourceImplTest {
     fun search_success_returnGifs() = coroutineTestRule.runBlockingTest {
         prepareScenario()
 
-        val result = dataSource.search(query = "query").handleResult()
+        val result = dataSource.search(query = "query").get()
 
         val gifs = listOf(GifFactory.makeGif())
         assertEquals(gifs, result)

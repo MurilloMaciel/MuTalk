@@ -1,5 +1,5 @@
 package com.maciel.murillo.image_picker.domain.model
 
-sealed class ImagePickerError {
-    object SaveImageIntoDb : ImagePickerError()
+sealed class ImagePickerError(val message: String) {
+    class SaveImageIntoDb(message: String) : ImagePickerError(message)
 }

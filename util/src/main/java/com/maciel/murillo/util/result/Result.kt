@@ -2,6 +2,13 @@ package com.maciel.murillo.util.result
 
 fun Unit.toUnitSuccess() = Result.Success(Unit)
 
+fun <V, E> Result<V, E>.getOr(default: V): V {
+    return when (this) {
+        is Result.Success -> value
+        is Result.Error -> default
+    }
+}
+
 sealed class Result<out D, out E> {
     data class Success<D>(val value: D) : Result<D, Nothing>()
     data class Error<E>(val value: E) : Result<Nothing, E>()
@@ -49,5 +56,12 @@ sealed class Result<out D, out E> {
     ): Result<T, F> = when (this) {
         is Success -> transformSuccess(value)
         is Error -> transformError(value)
+    }
+
+    fun get(): D? {
+        return when (this) {
+            is Success -> value
+            is Error -> null
+        }
     }
 }

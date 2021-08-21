@@ -4,11 +4,13 @@ import com.maciel.murillo.image_picker.data.datasource.ImagePickerRemoteDataSour
 import com.maciel.murillo.image_picker.domain.model.ImageDestiny
 import com.maciel.murillo.image_picker.domain.model.ImagePath
 import com.google.firebase.storage.StorageReference
+import com.maciel.murillo.extensions.safe
 import com.maciel.murillo.image_picker.domain.model.ImagePickerError
 import com.maciel.murillo.util.result.Result
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
+const val IMAGE_PATH_ERROR_MESSAGE = "An error occurred with image path (null or empty)"
 private const val STORAGE_NODE_IMAGES = "images"
 private const val GROUP_NODE_IMAGES = "group"
 private const val CHAT_NODE_IMAGES = "chat"
@@ -32,18 +34,18 @@ class ImagePickerRemoteDataSourceImpl @Inject constructor(
                     uploadTask.storage
                     .downloadUrl
                     .await()
-                    .toString()
+                    ?.toString()
                     .let { handleImagePath(it) }
                 }
         } catch (e: Exception) {
-            Result.Error(ImagePickerError.SaveImageIntoDb)
+            Result.Error(ImagePickerError.SaveImageIntoDb(e.message.safe()))
         }
     }
 
-    private fun handleImagePath(path: String) = if (path.isEmpty()) {
-        Result.Success(path)
+    private fun handleImagePath(path: String?) = if (path.safe().isEmpty()) {
+        Result.Error(ImagePickerError.SaveImageIntoDb(IMAGE_PATH_ERROR_MESSAGE))
     } else {
-        Result.Error(ImagePickerError.SaveImageIntoDb)
+        Result.Success(path.safe())
     }
 
     private fun getDestinyNodePath(imageDestiny: ImageDestiny) = when (imageDestiny) {
