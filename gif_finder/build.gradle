@@ -16,7 +16,7 @@ dependencies {
     implementation project(Modules.extensions)
     implementation project(Modules.util)
     implementation project(Modules.network)
-    testImplementation project(Modules.test_util)
+    testImplementation project(Modules.testUtil)
 
     implementation(AndroidX.ktx)
     testImplementation(Kotlin.junit)

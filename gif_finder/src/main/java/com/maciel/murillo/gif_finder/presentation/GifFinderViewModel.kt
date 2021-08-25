@@ -10,8 +10,6 @@ import com.maciel.murillo.gif_finder.domain.usecase.GetTrendingGifsUseCase
 import com.maciel.murillo.gif_finder.domain.usecase.SearchGifsUseCase
 import com.maciel.murillo.util.provider.DispatcherProvider
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

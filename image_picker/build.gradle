@@ -21,7 +21,7 @@ kapt {
 dependencies {
     implementation project(Modules.extensions)
     implementation project(Modules.util)
-    testImplementation project(Modules.test_util)
+    testImplementation project(Modules.testUtil)
 
     implementation(AndroidX.ktx)
     implementation(AndroidX.appcompat)
@@ -40,7 +40,6 @@ dependencies {
     implementation(Coroutines.core)
     implementation(Coroutines.android)
     implementation(Coroutines.playServices)
-    testImplementation Coroutines.test
 
     implementation(Lifecycle.runtime)
     implementation(Lifecycle.viewModel)

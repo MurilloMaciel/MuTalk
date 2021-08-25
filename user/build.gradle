@@ -1,0 +1,26 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+}
+
+apply from: "$rootDir/config-android-module.gradle"
+
+dependencies {
+    implementation project(Modules.extensions)
+    implementation project(Modules.util)
+    testImplementation project(Modules.testUtil)
+
+    implementation(Kotlin.stdlib)
+    implementation(Coroutines.core)
+    implementation(Coroutines.android)
+    implementation(Coroutines.playServices)
+    implementation(Hilt.core)
+    implementation platform(Firebase.platform)
+    implementation(Firebase.firestore)
+
+    kapt(Hilt.compiler)
+
+    testImplementation(Coroutines.test)
+}
