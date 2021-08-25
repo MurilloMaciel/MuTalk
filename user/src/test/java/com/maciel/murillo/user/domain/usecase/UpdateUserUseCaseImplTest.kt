@@ -1,3 +1,18 @@
 package com.maciel.murillo.user.domain.usecase
 
-class UpdateUserUseCaseImplTest
+import com.maciel.murillo.test_util.CoroutineTestRule
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import org.junit.Rule
+
+@ExperimentalCoroutinesApi
+class UpdateUserUseCaseImplTest {
+
+    @get:Rule
+    internal val coroutineTestRule = CoroutineTestRule()
+
+    private fun prepareScenario(
+
+    ) {
+
+    }
+}

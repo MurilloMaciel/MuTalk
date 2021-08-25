@@ -25,4 +25,7 @@ dependencies {
     kapt(Hilt.compiler)
 
     testImplementation(Coroutines.test)
+    testImplementation(JUnit.core)
+    testImplementation(MockK.core)
+    testImplementation(Kotlin.junit)
 }

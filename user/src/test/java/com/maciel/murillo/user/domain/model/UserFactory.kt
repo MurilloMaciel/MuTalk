@@ -7,5 +7,5 @@ object UserFactory {
         email: String = "email",
         imageUrl: String = "imageUrl",
         name: String = "name",
-    ) = User(id, email, imageUrl, name)
+    ) = User(id, name, email, imageUrl)
 }
