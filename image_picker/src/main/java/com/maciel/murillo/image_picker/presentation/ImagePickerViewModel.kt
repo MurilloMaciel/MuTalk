@@ -33,7 +33,7 @@ class ImagePickerViewModel @Inject constructor(
     }
 
     private fun saveImage(imageBytes: ByteArray, imagePath: ImagePath) {
-        viewModelScope.launch(dispatcherProvider.io()) {
+        viewModelScope.launch(dispatcherProvider.default()) {
             saveImageUseCase(imageBytes, imagePath).onError {
                 _saveError.postValue(Event(Unit))
             }.onSuccess { imagePathOnDb ->

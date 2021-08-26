@@ -1,6 +1,5 @@
 package com.maciel.murillo.gif_finder.data.remote
 
-import android.util.Log
 import com.maciel.murillo.gif_finder.data.datasource.GifFinderRemoteDataSource
 import com.maciel.murillo.gif_finder.data.mapper.GifResponseToModelMapper
 import com.maciel.murillo.gif_finder.domain.model.GetGifsError
@@ -29,7 +28,6 @@ class GifFinderRemoteDataSourceImpl @Inject constructor(
             rating = MOST_ACCEPTED_RATING,
             offset = OFFSET,
         ).safeCall().mapSuccess {
-//            Log.d("Murillo", "trendingGifs -> $it")
             gifResponseToModelMapper.mapFrom(it)
         }.mapError {
             GetGifsError.Generic

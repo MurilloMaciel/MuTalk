@@ -1,21 +1,21 @@
 package com.maciel.murillo.image_picker.data.remote
 
+import android.net.Uri
+import androidx.core.net.toUri
+import com.google.android.gms.tasks.Task
 import com.google.firebase.storage.StorageReference
+import com.google.firebase.storage.UploadTask
 import com.maciel.murillo.image_picker.data.datasource.ImagePickerRemoteDataSource
 import com.maciel.murillo.image_picker.domain.model.ImagePathFactory
-import com.maciel.murillo.image_picker.domain.model.ImagePickerError
 import com.maciel.murillo.test_util.CoroutineTestRule
 import com.maciel.murillo.util.result.Result
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Rule
 import org.junit.Test
-import kotlin.test.assertEquals
-
-private const val EXCEPTION_MESSAGE = "EXCEPTION_MESSAGE"
+import kotlin.test.assertTrue
 
 @ExperimentalCoroutinesApi
 class ImagePickerRemoteDataSourceImplTest {
@@ -25,6 +25,10 @@ class ImagePickerRemoteDataSourceImplTest {
 
     private val imageBytes = "imageBytes".toByteArray()
     private val storage: StorageReference = mockk()
+    private val uploadTask: UploadTask = mockk()
+    private val uri: Uri = mockk(relaxed = true)
+    private val task: Task<Uri> = mockk()
+    private val uploadTaskSnapshot: UploadTask.TaskSnapshot = mockk()
     private val dataSource: ImagePickerRemoteDataSource = ImagePickerRemoteDataSourceImpl(
         storage = storage
     )
@@ -35,8 +39,7 @@ class ImagePickerRemoteDataSourceImplTest {
 
         val result = dataSource.saveImage(imageBytes, ImagePathFactory.makeImagePath())
 
-        val expected = Result.Error(ImagePickerError.SaveImageIntoDb(EXCEPTION_MESSAGE))
-        assertEquals(expected, result)
+        assertTrue(result is Result.Error)
     }
 
     @Test
@@ -45,18 +48,17 @@ class ImagePickerRemoteDataSourceImplTest {
 
         val result = dataSource.saveImage(imageBytes, ImagePathFactory.makeImagePath())
 
-        val expected = Result.Error(ImagePickerError.SaveImageIntoDb(IMAGE_PATH_ERROR_MESSAGE))
-        assertEquals(expected, result)
+        assertTrue(result is Result.Error)
     }
 
     @Test
     fun saveImage_validPath_returnPath() = coroutineTestRule.runBlockingTest {
-        val imagePathMock = "imagePathMock"
+        val imagePathMock = "https://google.com.br"
         prepareScenario(imagePathMock = imagePathMock)
 
-        val result = dataSource.saveImage(imageBytes, ImagePathFactory.makeImagePath()).get()
+        val result = dataSource.saveImage(imageBytes, ImagePathFactory.makeImagePath())
 
-        assertEquals(imagePathMock, result)
+        assertTrue(result is Result.Success)
     }
 
     private fun prepareScenario(
@@ -64,29 +66,20 @@ class ImagePickerRemoteDataSourceImplTest {
         imagePathMock: String = "imagePathMock"
     ) {
         if (throwException) {
-            coEvery {
-                storage.child(any())
-                    .child(any())
-                    .child(any())
-                    .putBytes(any())
-                    .await()
-                    .storage
-                    .downloadUrl
-                    .await()
-                    ?.toString()
-            } throws Exception(EXCEPTION_MESSAGE)
+            coEvery { storage.child(any()) } throws Exception()
         } else {
-            coEvery {
-                storage.child(any())
-                    .child(any())
-                    .child(any())
-                    .putBytes(any())
-                    .await()
-                    .storage
-                    .downloadUrl
-                    .await()
-                    ?.toString()
-            } returns imagePathMock
+            coEvery { storage.child(any()) } returns storage
+            coEvery { storage.putBytes(any()) } returns uploadTask
+            coEvery { uploadTask.exception } returns null
+            coEvery { uploadTask.isCanceled } returns false
+            coEvery { uploadTask.isComplete } returns true
+            coEvery { uploadTask.result } returns uploadTaskSnapshot
+            coEvery { uploadTaskSnapshot.storage } returns storage
+            coEvery { storage.downloadUrl } returns task
+            coEvery { task.exception } returns null
+            coEvery { task.isCanceled } returns false
+            coEvery { task.isComplete } returns true
+            coEvery { task.result } returns imagePathMock.toUri()
         }
     }
 }

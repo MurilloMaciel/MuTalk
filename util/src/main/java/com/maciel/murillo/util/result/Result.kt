@@ -64,4 +64,11 @@ sealed class Result<out D, out E> {
             is Error -> null
         }
     }
+
+    fun getError(): E? {
+        return when (this) {
+            is Error -> value
+            is Success -> null
+        }
+    }
 }

@@ -30,13 +30,11 @@ class ImagePickerRemoteDataSourceImpl @Inject constructor(
                 .child(imagePath.elementId)
                 .putBytes(imageBytes)
                 .await()
-                .let { uploadTask ->
-                    uploadTask.storage
-                    .downloadUrl
-                    .await()
-                    ?.toString()
-                    .let { handleImagePath(it) }
-                }
+                .storage
+                .downloadUrl
+                .await()
+                .toString()
+                .let { handleImagePath(it) }
         } catch (e: Exception) {
             Result.Error(ImagePickerError.SaveImageIntoDb(e.message.safe()))
         }

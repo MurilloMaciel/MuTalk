@@ -30,7 +30,7 @@ class UserRemoteDataSourceImpl @Inject constructor(
         return try {
             collection.document().run {
                 user.copy(id = id).let { userToSave ->
-                    set(userModelToUserDataMapper.mapFrom(userToSave))
+                    set(userModelToUserDataMapper.mapFrom(userToSave)).await()
                     Result.Success(userToSave)
                 }
             }
@@ -42,10 +42,10 @@ class UserRemoteDataSourceImpl @Inject constructor(
     override suspend fun get(id: String): Result<User, CrudError.Get> {
         return try {
             collection.document(id).get().await().run {
-                    toObject<UserData>()?.let { userData ->
-                        Result.Success(userDataToModelMapper.mapFrom(userData))
-                    }
+                toObject<UserData>()?.let { userData ->
+                    return Result.Success(userDataToModelMapper.mapFrom(userData))
                 }
+            }
             Result.Error(UserGetError(PARSING_ERROR, COLLECTION_USER))
         } catch (e: Exception) {
             Result.Error(UserGetError(e.message.safe(), COLLECTION_USER))
