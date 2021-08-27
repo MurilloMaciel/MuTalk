@@ -1,7 +1,6 @@
 package com.maciel.murillo.image_picker.data.remote
 
 import android.net.Uri
-import androidx.core.net.toUri
 import com.google.android.gms.tasks.Task
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.UploadTask
@@ -9,8 +8,7 @@ import com.maciel.murillo.image_picker.data.datasource.ImagePickerRemoteDataSour
 import com.maciel.murillo.image_picker.domain.model.ImagePathFactory
 import com.maciel.murillo.test_util.CoroutineTestRule
 import com.maciel.murillo.util.result.Result
-import io.mockk.coEvery
-import io.mockk.mockk
+import io.mockk.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Rule
@@ -44,21 +42,40 @@ class ImagePickerRemoteDataSourceImplTest {
 
     @Test
     fun saveImage_pathEmpty_returnsError() = coroutineTestRule.runBlockingTest {
+        prepareUriScenario(empty = true)
         prepareScenario(imagePathMock = "")
 
         val result = dataSource.saveImage(imageBytes, ImagePathFactory.makeImagePath())
 
         assertTrue(result is Result.Error)
+        finishUriScenario()
     }
 
     @Test
     fun saveImage_validPath_returnPath() = coroutineTestRule.runBlockingTest {
-        val imagePathMock = "https://google.com.br"
+        val imagePathMock = "https://google.com.br/"
+        prepareUriScenario(imagePathMock = imagePathMock, empty = false)
         prepareScenario(imagePathMock = imagePathMock)
 
         val result = dataSource.saveImage(imageBytes, ImagePathFactory.makeImagePath())
 
         assertTrue(result is Result.Success)
+        finishUriScenario()
+    }
+
+    fun prepareUriScenario(imagePathMock: String = "imagePathMock", empty: Boolean = false) {
+        clearAllMocks()
+        mockkStatic(Uri::parse)
+        if (empty) {
+            every { Uri.parse(any()) } returns Uri.EMPTY
+        } else {
+            every { Uri.parse(any()) } returns uri
+            every { uri.toString() } returns imagePathMock
+        }
+    }
+
+    fun finishUriScenario() {
+        unmockkStatic(Uri::parse)
     }
 
     private fun prepareScenario(
@@ -79,7 +96,7 @@ class ImagePickerRemoteDataSourceImplTest {
             coEvery { task.exception } returns null
             coEvery { task.isCanceled } returns false
             coEvery { task.isComplete } returns true
-            coEvery { task.result } returns imagePathMock.toUri()
+            coEvery { task.result } returns Uri.parse(imagePathMock)
         }
     }
 }
