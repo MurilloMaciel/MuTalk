@@ -31,7 +31,7 @@ class SaveImageUseCaseImplTest {
         val error = Result.Error(ImagePickerError.SaveImageIntoDb(EXCEPTION_MESSAGE))
         prepareScenario(saveImageResult = error)
 
-        val result = repository.saveImage(imageBytes, ImagePathFactory.makeImagePath())
+        val result = useCase(imageBytes, ImagePathFactory.makeImagePath())
 
         assertEquals(error, result)
     }
@@ -41,7 +41,7 @@ class SaveImageUseCaseImplTest {
         val resultSuccess = Result.Success(imagePath)
         prepareScenario(saveImageResult = resultSuccess)
 
-        val result = repository.saveImage(imageBytes, ImagePathFactory.makeImagePath()).get()
+        val result = useCase(imageBytes, ImagePathFactory.makeImagePath()).get()
 
         assertEquals(imagePath, result)
     }
